@@ -37,5 +37,5 @@ public class UserDto {
 	private String password;
 
 //	Many Users belongs to one Department
-	private Department department;
+	private Integer departmentId;
 }

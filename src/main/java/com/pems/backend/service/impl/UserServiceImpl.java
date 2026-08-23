@@ -1,7 +1,5 @@
 package com.pems.backend.service.impl;
 
-import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +32,7 @@ public class UserServiceImpl implements UserService {
 		String password = passwordEncoder.encode(userDto.getPassword());
 		userDto.setPassword(password);
 		User user = modelMapper.map(userDto, User.class);
-		Department department = departmentRepository.findById(userDto.getDepartment().getDepartmentId())
+		Department department = departmentRepository.findById(userDto.getDepartmentId())
 				.orElseThrow(() -> new RuntimeException("departmentId not found"));
 		user.setDepartment(department);
 		User savedUser = userRepository.save(user);
