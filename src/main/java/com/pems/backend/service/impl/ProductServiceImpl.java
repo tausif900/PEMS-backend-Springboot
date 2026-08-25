@@ -2,6 +2,7 @@ package com.pems.backend.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,16 @@ public class ProductServiceImpl implements ProductService {
 		ProductResponseDto responseDto = modelMapper.map(savedProduct, ProductResponseDto.class);
 
 		return responseDto;
+	}
+
+	@Override
+	public List<ProductResponseDto> getAllProducts() {
+		List<Product> allProducts = productRepository.findAll();
+		List<ProductResponseDto> listOfProducts = allProducts.stream().map((p) -> {
+			ProductResponseDto responseDto = modelMapper.map(p, ProductResponseDto.class);
+			return responseDto;
+		}).toList();
+		return listOfProducts;
 	}
 
 }
