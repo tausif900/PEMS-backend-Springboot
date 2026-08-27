@@ -60,4 +60,10 @@ public class ProductServiceImpl implements ProductService {
 		return listOfProducts;
 	}
 
+	@Override
+	public List<ProductResponseDto> getDistinctProducts() {
+		List<ProductResponseDto> distinctProducts = productRepository.getDistinctProducts();
+		return distinctProducts;
+	}
+
 }

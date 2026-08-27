@@ -18,7 +18,7 @@ public class ProductRequestDto {
 
 	private BigDecimal purchasePrice;
 
-	private Integer quantity;
+	private Long quantity;
 	
 	private String productLocation;
 

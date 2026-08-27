@@ -21,13 +21,28 @@ public class ProductResponseDto {
 
 	private BigDecimal sellingPrice;
 
-	private Integer quantity;
+	private Long quantity;
 
 	private String productLocation;
 
 	private String supplier;
-	
+
 	private String productDescription;
-	
+
 	private LocalDate deliveryDate;
+
+//	This is generated bcuz of Repository "Custom Query"
+	public ProductResponseDto(String productName, String productCode, String productDescription, Long quantity,
+			String productLocation, String supplier) {
+		super();
+
+		this.productName = productName;
+		this.productCode = productCode;
+		this.quantity = quantity;
+		this.productLocation = productLocation;
+		this.supplier = supplier;
+		this.productDescription = productDescription;
+
+	}
+
 }

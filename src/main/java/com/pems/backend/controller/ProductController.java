@@ -32,4 +32,9 @@ public class ProductController {
 		return ResponseEntity.ok(productService.getAllProducts());
 	}
 
+	@GetMapping("/distinct-products")
+	public ResponseEntity<List<ProductResponseDto>> getDistinctProducts() {
+		return ResponseEntity.ok(productService.getDistinctProducts());
+	}
+
 }
