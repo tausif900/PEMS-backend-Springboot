@@ -1,6 +1,7 @@
 package com.pems.backend.service.impl;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,17 @@ public class PurchaseRequestServiceImple implements PurchaseRequestService {
 		purchaseRequestRepository.save(purchaseRequest);
 
 		return "Purchase request Saved Successfully";
+	}
+
+	@Override
+	public List<PurchaseRequestDto> getPendingPurchaseRequest() {
+		List<PurchaseRequest> pendingStatus = purchaseRequestRepository.findByStatus("Pending");
+		List<PurchaseRequestDto> listOfPendingPurchaseRequest = pendingStatus.stream().map((ps) -> {
+			PurchaseRequestDto requestDto = modelMapper.map(ps, PurchaseRequestDto.class);
+			requestDto.setRequestDate(LocalDate.now());
+			return requestDto;
+		}).toList();
+		return listOfPendingPurchaseRequest;
 	}
 
 }
