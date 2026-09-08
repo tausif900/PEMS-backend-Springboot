@@ -2,6 +2,7 @@ package com.pems.backend.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,30 @@ public class PurchaseRequestServiceImple implements PurchaseRequestService {
 	}
 
 	@Override
-	public List<PurchaseRequestDto> getPendingPurchaseRequest() {
+	public List<PurchaseRequest> getPendingPurchaseRequest() {
 		List<PurchaseRequest> pendingStatus = purchaseRequestRepository.findByStatus("Pending");
-		List<PurchaseRequestDto> listOfPendingPurchaseRequest = pendingStatus.stream().map((ps) -> {
-			PurchaseRequestDto requestDto = modelMapper.map(ps, PurchaseRequestDto.class);
-			requestDto.setRequestDate(LocalDate.now());
-			return requestDto;
+
+		return pendingStatus;
+	}
+
+	@Override
+	public PurchaseRequestDto approvePurchaseRequest(Integer purchaseId) {
+		PurchaseRequest purchaseRequest = purchaseRequestRepository.findById(purchaseId)
+				.orElseThrow(() -> new RuntimeException("request not found"));
+		purchaseRequest.setStatus("Approved");
+		purchaseRequestRepository.save(purchaseRequest);
+		PurchaseRequestDto purchaseRequestDto = modelMapper.map(purchaseRequest, PurchaseRequestDto.class);
+		return purchaseRequestDto;
+	}
+
+	@Override
+	public List<PurchaseRequestDto> getApprovedPurchaseRequests() {
+		List<PurchaseRequest> listOfApprovedRequest = purchaseRequestRepository.findByStatus("Approved");
+		List<PurchaseRequestDto> requestDto = listOfApprovedRequest.stream().map((r) -> {
+			PurchaseRequestDto purchaseRequestDto = modelMapper.map(r, PurchaseRequestDto.class);
+			return purchaseRequestDto;
 		}).toList();
-		return listOfPendingPurchaseRequest;
+		return requestDto;
 	}
 
 }
