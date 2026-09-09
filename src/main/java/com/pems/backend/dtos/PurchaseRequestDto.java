@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PurchaseRequestDto {
+	
+	private Integer requestId;
 
 	private String productCode;
 
