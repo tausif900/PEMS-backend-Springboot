@@ -21,12 +21,10 @@ public class PurchaseOrderDto {
 	private String poNumber;
 
 	private LocalDate poDate;
+	
+	private List<PurchaseRequestDto> purchaseRequestDto;
 
-	@OneToMany
-	private List<PurchaseRequest> purchaseRequest;
-
-	@OneToMany
-	private List<PurchaseOrderItems> purchaseOrderItems;
+	private List<PurchaseOrderItemsDto> purchaseOrderItemsDto;
 
 	private String supplier;
 
