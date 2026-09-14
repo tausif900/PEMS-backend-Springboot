@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.pems.backend.entity.Product;
 import com.pems.backend.entity.PurchaseOrder;
 
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurchaseOrderItemsDto {
+public class PurchaseOrderItemsResponseDto {
 	private Integer orderId;
 
+	@ManyToOne
 	private Product product;
 
 	private Integer quantity;
@@ -27,5 +29,6 @@ public class PurchaseOrderItemsDto {
 
 	private BigDecimal totalAmount;
 
+	@ManyToOne
 	private PurchaseOrder purchaseOrder;
 }

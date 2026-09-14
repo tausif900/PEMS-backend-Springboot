@@ -24,7 +24,7 @@ public class PurchaseOrderDto {
 	
 	private List<PurchaseRequestDto> purchaseRequestDto;
 
-	private List<PurchaseOrderItemsDto> purchaseOrderItemsDto;
+	private List<PurchaseOrderItemsResponseDto> purchaseOrderItemsResponseDto;
 
 	private String supplier;
 
