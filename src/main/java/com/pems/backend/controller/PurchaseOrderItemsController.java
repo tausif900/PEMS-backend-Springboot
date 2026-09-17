@@ -22,10 +22,10 @@ public class PurchaseOrderItemsController {
 	private PurchaseOrderItemsService purchaseOrderItemsService;
 
 	@PostMapping("/add-items")
-	public ResponseEntity<List<PurchaseOrderItemsResponseDto>> addAndCalculateOrderItems(
-			@RequestBody List<PurchaseOrderItemsRequestDto> requests) {
-		return new ResponseEntity<List<PurchaseOrderItemsResponseDto>>(
-				purchaseOrderItemsService.addAndCalculateOrderItems(requests), HttpStatus.CREATED);
+	public ResponseEntity<PurchaseOrderItemsResponseDto> addAndCalculateOrderItems(
+			@RequestBody PurchaseOrderItemsRequestDto request) {
+		return new ResponseEntity<PurchaseOrderItemsResponseDto>(
+				purchaseOrderItemsService.addAndCalculateOrderItems(request), HttpStatus.CREATED);
 	}
 
 }

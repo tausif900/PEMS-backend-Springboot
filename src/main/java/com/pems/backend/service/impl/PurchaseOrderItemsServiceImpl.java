@@ -14,34 +14,28 @@ import com.pems.backend.service.PurchaseOrderItemsService;
 public class PurchaseOrderItemsServiceImpl implements PurchaseOrderItemsService {
 
 	@Override
-	public List<PurchaseOrderItemsResponseDto> addAndCalculateOrderItems(List<PurchaseOrderItemsRequestDto> requests) {
-		List<PurchaseOrderItemsResponseDto> orderItems = new ArrayList<>();
+	public PurchaseOrderItemsResponseDto addAndCalculateOrderItems(PurchaseOrderItemsRequestDto request) {
+//		unitPrice*Quantity=totalPrice
+		BigDecimal subTotal = request.getUnitPrice().multiply(BigDecimal.valueOf(request.getQuantity()));
 
-		for (PurchaseOrderItemsRequestDto request : requests) {
+//		discount calculation
+		BigDecimal discount = subTotal.multiply(request.getDiscount()).divide(BigDecimal.valueOf(100));
 
-//			unitPrice*Quantity=totalPrice
-			BigDecimal subTotal = request.getUnitPrice().multiply(BigDecimal.valueOf(request.getQuantity()));
+//		GST Caluclation
+		BigDecimal gst = subTotal.multiply(request.getGst()).divide(BigDecimal.valueOf(100));
 
-//			discount calculation
-			BigDecimal discount = subTotal.multiply(request.getDiscount()).divide(BigDecimal.valueOf(100));
+//		Final Amount
+		BigDecimal totalAmount = subTotal.subtract(discount).add(gst);
 
-//			GST Caluclation
-			BigDecimal gst = subTotal.multiply(request.getGst()).divide(BigDecimal.valueOf(100));
-
-//			Final Amount
-			BigDecimal totalAmount = subTotal.subtract(discount).add(gst);
-
-			PurchaseOrderItemsResponseDto response = new PurchaseOrderItemsResponseDto();
-			response.setQuantity(request.getQuantity());
-			response.setUnitPrice(request.getUnitPrice());
-			response.setDiscount(request.getDiscount());
-			response.setGst(request.getGst());
-			response.setTotalAmount(totalAmount);
-
-			orderItems.add(response);
-		}
-
-		return orderItems;
+		PurchaseOrderItemsResponseDto response = new PurchaseOrderItemsResponseDto();
+		response.setProduct(request.getProduct());
+		response.setPurchaseOrder(request.getPurchaseOrder());
+		response.setQuantity(request.getQuantity());
+		response.setUnitPrice(request.getUnitPrice());
+		response.setDiscount(request.getDiscount());
+		response.setGst(request.getGst());
+		response.setTotalAmount(totalAmount);
+		return response;
 	}
 
 }
