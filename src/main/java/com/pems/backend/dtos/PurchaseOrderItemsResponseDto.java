@@ -15,11 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PurchaseOrderItemsResponseDto {
 	private Integer orderId;
+	
+	private String productName;
+	
+	private String productCode;
 
-	@ManyToOne
-	private Product product;
-
-	private Integer quantity;
+	private Integer requestedQuantity;
 
 	private BigDecimal unitPrice;
 

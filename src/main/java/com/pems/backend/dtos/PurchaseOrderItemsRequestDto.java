@@ -17,10 +17,11 @@ public class PurchaseOrderItemsRequestDto {
 
 	private Integer orderId;
 
-	@ManyToOne
-	private Product product;
+	private String productName;
 
-	private Integer quantity;
+	private String productCode;
+	
+	private Integer requestedQuantity;
 
 	private BigDecimal unitPrice;
 
@@ -32,5 +33,5 @@ public class PurchaseOrderItemsRequestDto {
 
 	@ManyToOne
 	private PurchaseOrder purchaseOrder;
-	
+
 }

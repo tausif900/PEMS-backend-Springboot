@@ -16,7 +16,7 @@ public class PurchaseOrderItemsServiceImpl implements PurchaseOrderItemsService 
 	@Override
 	public PurchaseOrderItemsResponseDto addAndCalculateOrderItems(PurchaseOrderItemsRequestDto request) {
 //		unitPrice*Quantity=totalPrice
-		BigDecimal subTotal = request.getUnitPrice().multiply(BigDecimal.valueOf(request.getQuantity()));
+		BigDecimal subTotal = request.getUnitPrice().multiply(BigDecimal.valueOf(request.getRequestedQuantity()));
 
 //		discount calculation
 		BigDecimal discount = subTotal.multiply(request.getDiscount()).divide(BigDecimal.valueOf(100));
@@ -28,9 +28,10 @@ public class PurchaseOrderItemsServiceImpl implements PurchaseOrderItemsService 
 		BigDecimal totalAmount = subTotal.subtract(discount).add(gst);
 
 		PurchaseOrderItemsResponseDto response = new PurchaseOrderItemsResponseDto();
-		response.setProduct(request.getProduct());
+		response.setProductName(request.getProductName());
+		response.setProductCode(request.getProductCode());
 		response.setPurchaseOrder(request.getPurchaseOrder());
-		response.setQuantity(request.getQuantity());
+		response.setRequestedQuantity(request.getRequestedQuantity());
 		response.setUnitPrice(request.getUnitPrice());
 		response.setDiscount(request.getDiscount());
 		response.setGst(request.getGst());
