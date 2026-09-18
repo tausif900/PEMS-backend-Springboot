@@ -23,8 +23,12 @@ public class PurchaseOrderItems {
 
 	@ManyToOne
 	private Product product;
+	
+	private String productName;
+	
+	private String productCode;
 
-	private Integer quantity;
+	private Integer requestedQuantity;
 
 	private BigDecimal unitPrice;
 

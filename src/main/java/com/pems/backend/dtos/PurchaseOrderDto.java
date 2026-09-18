@@ -1,5 +1,6 @@
 package com.pems.backend.dtos;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,10 +22,20 @@ public class PurchaseOrderDto {
 	private String poNumber;
 
 	private LocalDate poDate;
-	
+
 	private List<PurchaseRequestDto> purchaseRequestDto;
 
-	private List<PurchaseOrderItemsResponseDto> purchaseOrderItemsResponseDto;
+	private List<PurchaseOrderItemsResponseDto> orderItems;
+
+	private BigDecimal subTotal;
+
+	private BigDecimal discount;
+
+	private BigDecimal cgst;
+
+	private BigDecimal sgst;
+
+	private BigDecimal grandTotal;
 
 	private String supplier;
 

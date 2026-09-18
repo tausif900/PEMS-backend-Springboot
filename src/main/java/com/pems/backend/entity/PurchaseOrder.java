@@ -1,8 +1,11 @@
 package com.pems.backend.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,8 +32,18 @@ public class PurchaseOrder {
 	@OneToMany
 	private List<PurchaseRequest> purchaseRequest;
 
-	@OneToMany
-	private List<PurchaseOrderItems> purchaseOrderItems;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<PurchaseOrderItems> orderItems = new ArrayList<>();
+
+	private BigDecimal subTotal;
+
+	private BigDecimal discount;
+
+	private BigDecimal cgst;
+
+	private BigDecimal sgst;
+
+	private BigDecimal grandTotal;
 
 	private String supplier;
 

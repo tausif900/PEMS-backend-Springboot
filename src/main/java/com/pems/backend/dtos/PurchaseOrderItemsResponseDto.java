@@ -30,6 +30,4 @@ public class PurchaseOrderItemsResponseDto {
 
 	private BigDecimal totalAmount;
 
-	@ManyToOne
-	private PurchaseOrder purchaseOrder;
 }
