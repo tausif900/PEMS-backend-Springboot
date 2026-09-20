@@ -47,7 +47,7 @@ public class PurchaseOrderDto {
 
 	private String supplierAddress;
 
-	private LocalDate expectedDliveryDate;
+	private LocalDate expectedDeliveryDate;
 
 	private String deliveryAddress;
 

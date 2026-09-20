@@ -38,7 +38,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 		po.setPhoneNumber(purchaseOrderDto.getPhoneNumber());
 		po.setGstNumber(purchaseOrderDto.getGstNumber());
 		po.setSupplierAddress(purchaseOrderDto.getSupplierAddress());
-		po.setExpectedDliveryDate(purchaseOrderDto.getExpectedDliveryDate());
+		po.setExpectedDeliveryDate(purchaseOrderDto.getExpectedDeliveryDate());
 		po.setDeliveryAddress(purchaseOrderDto.getDeliveryAddress());
 		po.setPaymentTerms(purchaseOrderDto.getPaymentTerms());
 		po.setPaymentDueDate(purchaseOrderDto.getPaymentDueDate());

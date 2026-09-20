@@ -55,7 +55,7 @@ public class PurchaseOrder {
 
 	private String supplierAddress;
 
-	private LocalDate expectedDliveryDate;
+	private LocalDate expectedDeliveryDate;
 
 	private String deliveryAddress;
 
