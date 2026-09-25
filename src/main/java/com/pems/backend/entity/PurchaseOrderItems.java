@@ -20,6 +20,8 @@ public class PurchaseOrderItems {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer orderId;
+	
+	private Integer requestId;
 
 	@ManyToOne
 	private Product product;

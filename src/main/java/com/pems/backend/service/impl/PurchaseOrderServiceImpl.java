@@ -10,7 +10,9 @@ import com.pems.backend.dtos.PurchaseOrderDto;
 import com.pems.backend.dtos.PurchaseOrderItemsResponseDto;
 import com.pems.backend.entity.PurchaseOrder;
 import com.pems.backend.entity.PurchaseOrderItems;
+import com.pems.backend.entity.PurchaseRequest;
 import com.pems.backend.repositoriy.PurchaseOrderRepository;
+import com.pems.backend.repositoriy.PurchaseRequestRepository;
 import com.pems.backend.service.PurchaseOrderService;
 
 @Service
@@ -18,6 +20,9 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	@Autowired
 	private PurchaseOrderRepository purchaseOrderRepository;
+
+	@Autowired
+	private PurchaseRequestRepository purchaseRequestRepository;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -62,6 +67,18 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 		}
 
 		PurchaseOrder savedPo = purchaseOrderRepository.save(po);
+
+		for (PurchaseOrderItemsResponseDto itemDto : items) {
+			Integer requestId = itemDto.getRequestId();
+
+			PurchaseRequest purchaseRequest = purchaseRequestRepository.findById(requestId)
+					.orElseThrow(() -> new RuntimeException("Request Id not found"));
+
+			purchaseRequest.setStatus("Calculated");
+			
+			purchaseRequestRepository.save(purchaseRequest);
+
+		}
 
 		return modelMapper.map(savedPo, PurchaseOrderDto.class);
 

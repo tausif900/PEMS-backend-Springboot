@@ -16,6 +16,8 @@ import lombok.NoArgsConstructor;
 public class PurchaseOrderItemsResponseDto {
 	private Integer orderId;
 	
+	private Integer requestId;
+	
 	private String productName;
 	
 	private String productCode;
