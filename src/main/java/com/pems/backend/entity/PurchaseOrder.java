@@ -32,7 +32,7 @@ public class PurchaseOrder {
 	@OneToMany
 	private List<PurchaseRequest> purchaseRequest;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "purchaseOrder")
 	private List<PurchaseOrderItems> orderItems = new ArrayList<>();
 
 	private BigDecimal subTotal;

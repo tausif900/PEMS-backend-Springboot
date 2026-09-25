@@ -60,7 +60,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 			item.setDiscount(itemDto.getDiscount());
 			item.setGst(itemDto.getGst());
 			item.setTotalAmount(itemDto.getTotalAmount());
-
+			item.setRequestId(itemDto.getRequestId());
 			item.setPurchaseOrder(po);
 
 			po.getOrderItems().add(item);
@@ -75,7 +75,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 					.orElseThrow(() -> new RuntimeException("Request Id not found"));
 
 			purchaseRequest.setStatus("Calculated");
-			
+
 			purchaseRequestRepository.save(purchaseRequest);
 
 		}
