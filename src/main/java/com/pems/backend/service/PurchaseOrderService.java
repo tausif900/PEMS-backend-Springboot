@@ -6,4 +6,6 @@ public interface PurchaseOrderService {
 
 	PurchaseOrderDto createPO(PurchaseOrderDto purchaseOrderDto);
 
+	PurchaseOrderDto getPoById(Integer poId);
+
 }

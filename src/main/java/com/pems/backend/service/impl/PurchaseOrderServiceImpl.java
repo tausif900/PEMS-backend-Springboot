@@ -84,4 +84,12 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	}
 
+	@Override
+	public PurchaseOrderDto getPoById(Integer poId) {
+		PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(poId)
+				.orElseThrow(() -> new RuntimeException("PO not found"));
+		PurchaseOrderDto purchaseOrderDto = modelMapper.map(purchaseOrder, PurchaseOrderDto.class);
+		return purchaseOrderDto;
+	}
+
 }
