@@ -27,6 +27,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+//	Create or Add PO
 	@Override
 	public PurchaseOrderDto createPO(PurchaseOrderDto purchaseOrderDto) {
 
@@ -84,12 +85,26 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	}
 
+//	Get PO by PO id
 	@Override
 	public PurchaseOrderDto getPoById(Integer poId) {
 		PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(poId)
 				.orElseThrow(() -> new RuntimeException("PO not found"));
 		PurchaseOrderDto purchaseOrderDto = modelMapper.map(purchaseOrder, PurchaseOrderDto.class);
 		return purchaseOrderDto;
+	}
+
+//	Get All Open PO
+	@Override
+	public List<PurchaseOrderDto> getAllOpenPO() {
+		List<PurchaseOrder> listOfPO = purchaseOrderRepository.findAll();
+
+		List<PurchaseOrderDto> responseDto = listOfPO.stream().map((po) -> {
+			PurchaseOrderDto purchaseOrderDto = modelMapper.map(po, PurchaseOrderDto.class);
+			return purchaseOrderDto;
+		}).toList();
+
+		return responseDto;
 	}
 
 }

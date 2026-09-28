@@ -1,5 +1,7 @@
 package com.pems.backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,12 @@ public class PurchaseOrderController {
 	@GetMapping("/{poId}")
 	public ResponseEntity<PurchaseOrderDto> getPOById(@PathVariable Integer poId) {
 		return ResponseEntity.ok(purchaseOrderService.getPoById(poId));
+	}
+
+//	GET - "/purchase-order/all-open-PO"
+	@GetMapping("/all-open-PO")
+	public ResponseEntity<List<PurchaseOrderDto>> getAllOpenPO() {
+		return ResponseEntity.ok(purchaseOrderService.getAllOpenPO());
 	}
 
 }
