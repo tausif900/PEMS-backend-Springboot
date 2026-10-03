@@ -23,6 +23,10 @@ public class PurchaseOrderItemsResponseDto {
 	private String productCode;
 
 	private Integer requestedQuantity;
+	
+	private Integer receivedQuantity;
+	
+	private Integer pendingQuantity;
 
 	private BigDecimal unitPrice;
 

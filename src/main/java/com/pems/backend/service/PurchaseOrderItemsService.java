@@ -8,4 +8,5 @@ public interface PurchaseOrderItemsService {
 
 	PurchaseOrderItemsResponseDto addAndCalculateOrderItems(PurchaseOrderItemsRequestDto request);
 
+	PurchaseOrderItemsResponseDto receivedQuantity(Integer orderId,PurchaseOrderItemsRequestDto request);
 }

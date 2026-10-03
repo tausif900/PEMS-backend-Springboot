@@ -24,6 +24,8 @@ public class PurchaseOrderItemsRequestDto {
 	private String productCode;
 	
 	private Integer requestedQuantity;
+	
+	private Integer receivedQuantity;
 
 	private BigDecimal unitPrice;
 

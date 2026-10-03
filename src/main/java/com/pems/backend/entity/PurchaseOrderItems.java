@@ -31,6 +31,8 @@ public class PurchaseOrderItems {
 	private String productCode;
 
 	private Integer requestedQuantity;
+	
+	private Integer receivedQunatity;
 
 	private BigDecimal unitPrice;
 
